@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGE CALCULATOR</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+<div id="header">
+    <input type="date" name="" id="birthdate">
+    <button id="done">Done</button>
+</div>
+<div>
+    <p id="year"></p>
+    <p id="month"></p>
+    <p id="day"></p>
+</div>
+</body>
+</html>
+<!-- ======================= script ====================== -->
+<script type="text/javascript">
+
+document.querySelector('#done').addEventListener('click', function () { 
+    const update = function () {  
+        let birth = document.querySelector('#birthdate').value,
+            birthdate = new Date(birth),
+            birthtime = birthdate.getTime(),
+            today = new Date(),
+            timenow = today.getTime(),
+            totaltime = timenow - birthtime,
+            sec = Math.floor(totaltime/1000),
+            min = Math.floor(totaltime/(1000*60)),
+            hour = Math.floor(totaltime/(1000*60*60)),
+            day = Math.floor(totaltime/(1000*60*60*24)),
+            week= Math.floor(totaltime/(1000*60*60*24*7)),
+            month= Math.floor(totaltime/(1000*60*60*24*30.4375)),
+            year = Math.floor(totaltime/(1000*60*60*24*365.25));
+        let insert = function(x,y) {  
+                document.querySelector(x).innerHTML = y;
+        }
+        insert('#year',year + " years");
+        insert('#month',month + " months");
+        insert('#day',day + " days");
+    }
+    setInterval(update, 1000);
+})
+
+</script>
